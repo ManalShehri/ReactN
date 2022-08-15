@@ -13,7 +13,9 @@ export default function App() {
   function addGoalHandler() {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      {text: enteredGoalText, id: Math.random().toString()},
+      // i can use key here instead of the id 
+      // when i use the id, i should use key extractor 
     ]);
   }
   // ;
@@ -29,13 +31,20 @@ export default function App() {
         <Button title='Add Goal' onPress={addGoalHandler} /> 
       </View>
       <View style={styles.goalsContianer}>
-        <ScrollView >
-          {courseGoals.map((goal) => 
-            <View style={styles.goalItem}  key={goal}>
-              <Text style={styles.goalText} >{goal}</Text>
+        <FlatList data={courseGoals} renderItem={itemData => {
+          return (
+            <View style={styles.goalItem} >
+              <Text style={styles.goalText} >{itemData.item.text}</Text>
             </View>
-          )}
-        </ScrollView>
+          )
+        }} 
+        alwaysBounceVertical={false}
+        // key extractor for returning the id 
+        keyExtractor= {(item, index) => 
+        {
+          return item.id;
+        }}
+        />
       </View>
     </View>
   );
