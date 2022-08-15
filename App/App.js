@@ -18,7 +18,6 @@ export default function App() {
   }
   // ;
 
-
   return (
     <View style ={styles.appContainer}>
       <View style ={styles.inputContainer}>
