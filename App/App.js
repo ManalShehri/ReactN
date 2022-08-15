@@ -3,11 +3,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, FlatList } from 'react-native';
 import GoalItem from './Components/GoalItem';
 import GoalInput from './Components/GoalInput';
+
 export default function App() {
 
   const [courseGoals, setCourseGoals] = useState([]);
   
-
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
@@ -16,14 +16,22 @@ export default function App() {
       // when i use the id, i should use key extractor 
     ]);
   }
-  // ;
+
+  function deleteGoalHanndler(){
+    console.log('DELETE');
+  }
 
   return (
     <View style ={styles.appContainer}>
       <GoalInput onAddGoal={addGoalHandler} />
       <View style={styles.goalsContianer}>
         <FlatList data={courseGoals} renderItem={itemData => {
-          return <GoalItem text={itemData.item.text}/>;
+          return (
+            <GoalItem 
+              text={itemData.item.text} 
+              onDeleteItem={deleteGoalHanndler}
+            />
+          );
         }} 
         alwaysBounceVertical={false}
         // key extractor for returning the id 
