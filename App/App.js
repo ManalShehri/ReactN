@@ -33,37 +33,41 @@ export default function App() {
   }
 
   return (
-    <View style ={styles.appContainer}>
-      <Button 
-        title='Add New Goal' 
-        color="#5e0acc"
-        onPress={startAddGoalHandler}
-        />
+    // StatusBar for the time battrey at the top of the phone 
+    <>
+      <StatusBar style='light' /> 
+      <View style ={styles.appContainer}>
+        <Button 
+          title='Add New Goal' 
+          color="#a065ec"
+          onPress={startAddGoalHandler}
+          />
 
-      <GoalInput 
-        visible={modalIsVisible} 
-        onAddGoal={addGoalHandler} 
-        onCancel={endAddGoalHandler}
-      />
-      <View style={styles.goalsContianer}>
-        <FlatList data={courseGoals} renderItem={itemData => {
-          return (
-            <GoalItem 
-              text={itemData.item.text} 
-              id = {itemData.item.id}
-              onDeleteItem={deleteGoalHanndler}
-            />
-          );
-        }} 
-        alwaysBounceVertical={false}
-        // key extractor for returning the id 
-        keyExtractor= {(item, index) => 
-        {
-          return item.id;
-        }}
+        <GoalInput 
+          visible={modalIsVisible} 
+          onAddGoal={addGoalHandler} 
+          onCancel={endAddGoalHandler}
         />
+        <View style={styles.goalsContianer}>
+          <FlatList data={courseGoals} renderItem={itemData => {
+            return (
+              <GoalItem 
+                text={itemData.item.text} 
+                id = {itemData.item.id}
+                onDeleteItem={deleteGoalHanndler}
+              />
+            );
+          }} 
+          alwaysBounceVertical={false}
+          // key extractor for returning the id 
+          keyExtractor= {(item, index) => 
+          {
+            return item.id;
+          }}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -71,7 +75,8 @@ const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
     padding: 50,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    backgroundColor: '#1e085a',
   },
   goalsContianer: {
     flex: 5
