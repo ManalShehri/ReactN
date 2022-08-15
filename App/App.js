@@ -32,7 +32,7 @@ export default function App() {
       </View>
       <View style={styles.goalsContianer}>
         <FlatList data={courseGoals} renderItem={itemData => {
-          return <GoalItem/>;
+          return <GoalItem text={itemData.item.text}/>;
         }} 
         alwaysBounceVertical={false}
         // key extractor for returning the id 
